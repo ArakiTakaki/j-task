@@ -6,12 +6,13 @@ export default class ArtistView extends React.Component{
         var data = this.props.items
 
         var list = [];
-        for(var i in data){
+        // 普通の拡張for文使えたらしい。
+        for(var rec of data){
             list.push(
                 <div>
-                    <h2>{data[i].collectionName}</h2>
-                    <p>{data[i].artistName}</p>
-                    <img src={data[i].artworkUrl100} />     
+                    <h2>{rec.collectionName}</h2>
+                    <p>{rec.artistName}</p>
+                    <img src={rec.artworkUrl100} />     
                 </div>
             );
         }

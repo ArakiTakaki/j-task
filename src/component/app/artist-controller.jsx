@@ -1,7 +1,7 @@
 import React from 'react'
 import ArtistView from './artist-views'
 
-export default class ArtstController extends React.Component {
+export default class ArtistController extends React.Component {
     constructor(props){
         super(props)
         this.state = {data: [], isState: false}
@@ -10,7 +10,7 @@ export default class ArtstController extends React.Component {
     componentWillMount(){
 
         fetch(
-            CreateLang(this.props.url),
+            CreateLang(this.props.artistName),
             { method: 'GET' }
         )
             .then(res => {
