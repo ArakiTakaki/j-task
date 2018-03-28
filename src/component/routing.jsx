@@ -1,36 +1,33 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
-import Ajax from './ajax'
 
+// routing用
 import Home from './home.jsx'
 import Albam from './albam.jsx'
+import Serch from './app/artist-serch.jsx'
+// routing用
+
+import links from './routing-links.json' 
+
+console.log(links)
+
 
 export default class Nav extends Component {
     constructor(props){
         super(props)
         // stateの生成
-        this.state = { textValue: ""}
-        this.changeText = this.changeText.bind(this);
-    }
-
-    // 新しく作成する場合bindしてやらないと動作しないらしい
-    // onChange={this.changeText}
-    changeText(event){
-        this.setState( { textValue: event.target.value} )
     }
 
     render() {
         return (
             //とりあえずルーティングする場合はこんな感じらしい。
             <BrowserRouter>
-                <nav>
-                    <ul>
-                        <li><Link to='/'>全体</Link></li>
-                        <li><Link to='/albam'>アルバム</Link></li>
-                        <li><input type="text" value={this.state.textValue} onChange={this.changeText} /></li>
-                    </ul>
+                <nav>    
+                    
+                    <Links routing={links} />
                     <Route exact path='/' component={Home} />
                     <Route path='/albam' component={Albam} />
+                    <Route path='/serch' component={Serch} items={[1,2,3]} />
                 </nav>
             </BrowserRouter>
         );
@@ -39,16 +36,19 @@ export default class Nav extends Component {
 }
 
 
+const Links = (props) =>(
+    <ul>
+        {props.routing.map(
+            (item) => {
+                return <li key={item.URL}><Link to={item.URL}>{item.Name}</Link></li>;
+            }
+        )}
+    </ul>
+)
 
 
-// Ajaxテスト
-const debug = (data) =>(
-    console.log(data)
-)
-Ajax(
-    'https://itunes.apple.com/search?term=jack+johnson&limit=25',
-    debug
-)
+
+
 //exactが初期値？
 //https://itunes.apple.com/search?key1=value1&key2=value2&key3=value3
 //
