@@ -1,0 +1,16 @@
+[
+    {
+        "URL": "/",
+        "Name": "ホーム"
+    },
+    {
+        "URL": "/albam",
+        "Name": "アルバム"
+    },
+    {
+        "URL": "/artist",
+        "Name": "artist-serch"
+    }
+]
+
+
