@@ -16,7 +16,7 @@ export default class ArtistSerch extends React.Component {
     }
 
     // 実行後のコントローラーの取得される値がおかしかったのでAjaxを移行
-    
+    // renderはsetStateを変更すると再度レンダリングする。
     searchArt(e){
         fetch(
             CreateLang(this.refs.inputText.value),
@@ -26,6 +26,7 @@ export default class ArtistSerch extends React.Component {
                 return res.json()
             })
             .then(d => {
+                console.log(CreateLang(this.refs.inputText.value))
                 this.setState( { data: d.results } )
             })
             .catch(e => {
@@ -49,11 +50,9 @@ export default class ArtistSerch extends React.Component {
 
 }
 
-// <ArtistsView items={this.state.data.results} />
-
 // 空白処理は自動でやってくれるらしい（あっちで）
 const BASE_URL = 'https://itunes.apple.com/search'
 const CreateLang = (data) => {
-    return BASE_URL + "?term=" + data + "&limit=25&entity=album"
+    return BASE_URL + "?term=" + data + "&limit=20&entity=album"
 }
 
