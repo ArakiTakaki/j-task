@@ -4,7 +4,6 @@ export default class ArtistView extends React.Component{
     render(){
         console.log(this.props.items)
         var data = this.props.items
-
         var list = [];
         // 普通の拡張for文使えたらしい。
         for(var rec of data){

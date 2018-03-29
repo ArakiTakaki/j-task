@@ -1,5 +1,5 @@
 import React from 'react'
-import ArtstsCont from './artist-controller.jsx'
+import ArtistView from './artist-views'
 
 
 //import AtristView from './artist-view.jsx'
@@ -9,19 +9,29 @@ export default class ArtistSerch extends React.Component {
     constructor(props){
         super(props)
         this.state = { 
-            textValue: "" , 
-            isSerch: false, 
-            url: "" 
+            data: [] 
         }
         
         this.searchArt = this.searchArt.bind(this)
     }
 
-    // 新しく作成する場合bindしてやらないと動作しないらしい
-    // onChange={this.changeText}
+    // 実行後のコントローラーの取得される値がおかしかったのでAjaxを移行
+    
     searchArt(e){
-        this.setState( { textValue: this.refs.inputText.value})
-        this.setState( { isSerch: true } )
+        fetch(
+            CreateLang(this.refs.inputText.value),
+            { method: 'GET' }
+        )
+            .then(res => {
+                return res.json()
+            })
+            .then(d => {
+                this.setState( { data: d.results } )
+            })
+            .catch(e => {
+                console.log("fetch 失敗したよ")
+                console.log(e)
+            })
     }
 
     render(){
@@ -32,13 +42,7 @@ export default class ArtistSerch extends React.Component {
                     <input type="text" name="artist" ref="inputText" />
                 </label>
                 <input type="submit" onClick={this.searchArt} />
-
-                {(() => {
-                    console.log(this.state.textValue)
-                    if (this.state.isSerch) {
-                        return <ArtstsCont artistName={this.state.textValue} />
-                    }
-                })()}
+                <ArtistView items={this.state.data} />
             </div>
         )
     }
@@ -46,4 +50,10 @@ export default class ArtistSerch extends React.Component {
 }
 
 // <ArtistsView items={this.state.data.results} />
+
+// 空白処理は自動でやってくれるらしい（あっちで）
+const BASE_URL = 'https://itunes.apple.com/search'
+const CreateLang = (data) => {
+    return BASE_URL + "?term=" + data + "&limit=25&entity=album"
+}
 
