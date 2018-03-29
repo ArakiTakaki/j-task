@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 // routing用
 import Home from './home.jsx'
 import Albam from './albam.jsx'
-import Serch from './app/artist-serch.jsx'
+import Artist from './artist/artist-serch.jsx'
 // routing用
 
 import links from './routing-links.json' 
@@ -19,13 +19,14 @@ export default class Nav extends Component {
         return (
             //とりあえずルーティングする場合はこんな感じらしい。
             <BrowserRouter>
-                <nav>    
-                    
-                    <Links routing={links} />
+                <div id="warpper">    
+                    <nav>
+                        <Links routing={links} />
+                    </nav>
                     <Route exact path='/' component={Home} />
                     <Route path='/albam' component={Albam} />
-                    <Route path='/serch' component={Serch} />
-                </nav>
+                    <Route path='/artist' component={Artist} />
+                </div>
             </BrowserRouter>
         );
     }

@@ -8,8 +8,8 @@
         "Name": "アルバム"
     },
     {
-        "URL": "/serch",
-        "Name": "serch"
+        "URL": "/artist",
+        "Name": "artist-serch"
     }
 ]
 
