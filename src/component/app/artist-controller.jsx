@@ -7,8 +7,7 @@ export default class ArtistController extends React.Component {
         this.state = {data: [], isState: false}
     }
 
-    componentWillMount(){
-
+    componentWillReceiveProps(){
         fetch(
             CreateLang(this.props.artistName),
             { method: 'GET' }
@@ -33,8 +32,6 @@ export default class ArtistController extends React.Component {
                 {(() => {
                     if (this.state.isState) {
                         return <ArtistView items={this.state.data} />
-                    } else {
-                        return null
                     }
                 })()}
             </div>
@@ -45,7 +42,7 @@ export default class ArtistController extends React.Component {
 // 空白処理は自動でやってくれるらしい（あっちで）
 const BASE_URL = 'https://itunes.apple.com/search'
 const CreateLang = (data) => {
-    return BASE_URL + "?" + "term=" + data + "&" + "limit=25"
+    return BASE_URL + "?term=" + data + "&limit=25&entity=album"
 }
 
 

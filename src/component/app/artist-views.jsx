@@ -9,10 +9,11 @@ export default class ArtistView extends React.Component{
         // 普通の拡張for文使えたらしい。
         for(var rec of data){
             list.push(
-                <div>
+                <div key={rec.collectionId}>
+                    <h3>{rec.collectionId}</h3>
                     <h2>{rec.collectionName}</h2>
                     <p>{rec.artistName}</p>
-                    <img src={rec.artworkUrl100} />     
+                    <img src={rec.artworkUrl100} alt={rec.collectionName} />     
                 </div>
             );
         }

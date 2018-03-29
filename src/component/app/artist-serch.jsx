@@ -8,11 +8,14 @@ export default class ArtistSerch extends React.Component {
 
     constructor(props){
         super(props)
-        this.state = { textValue: "" , isSerch: false, url: "" }
+        this.state = { 
+            textValue: "" , 
+            isSerch: false, 
+            url: "" 
+        }
         
         this.searchArt = this.searchArt.bind(this)
     }
-
 
     // 新しく作成する場合bindしてやらないと動作しないらしい
     // onChange={this.changeText}
@@ -31,10 +34,9 @@ export default class ArtistSerch extends React.Component {
                 <input type="submit" onClick={this.searchArt} />
 
                 {(() => {
+                    console.log(this.state.textValue)
                     if (this.state.isSerch) {
                         return <ArtstsCont artistName={this.state.textValue} />
-                    } else {
-                        return null
                     }
                 })()}
             </div>

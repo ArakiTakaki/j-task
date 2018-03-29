@@ -13,10 +13,7 @@ console.log(links)
 
 
 export default class Nav extends Component {
-    constructor(props){
-        super(props)
-        // stateの生成
-    }
+   
 
     render() {
         return (
@@ -27,7 +24,7 @@ export default class Nav extends Component {
                     <Links routing={links} />
                     <Route exact path='/' component={Home} />
                     <Route path='/albam' component={Albam} />
-                    <Route path='/serch' component={Serch} items={[1,2,3]} />
+                    <Route path='/serch' component={Serch} />
                 </nav>
             </BrowserRouter>
         );
